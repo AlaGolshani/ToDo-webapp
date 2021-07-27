@@ -48,7 +48,3 @@ class CategoryTasks(View):
 class TaskDetailView(DetailView):
     model = Task
     template_name = 'task/task_detail.html'
-
-    # def get_context_data(self, **kwargs):
-    #     super().get_context_data(self, kwargs)
-

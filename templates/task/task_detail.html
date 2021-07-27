@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load task_extras %}
 
 {% block title %}
     task {{ task.title | title }}
@@ -31,6 +31,12 @@
                 <li class="bg-lightblue list-group-item text-center">
                     deadline: {{ task.deadline|default:"-" }}
                 </li>
+                {% if task.deadline %}
+                    {% remaining_time task.deadline as remaining_time %}
+                    <li class="bg-lightblue list-group-item text-center">
+                        remaining time: {{ remaining_time }}
+                    </li>
+                {% endif %}
             </ul>
         </div>
     </div>
