@@ -11,11 +11,11 @@
         <div>
             <ul class="list-group">
                 {% for task in tasks %}
-                    <li class="bg-lightblue list-group-item text-center">
-                        {{ task.title }} - {{ task.description|default:"None" }} -
-                        {{ task.get_priority_display }} - {{ task.complete }} -
-                        {{ task.category }} - {{ task.deadline }}
-                    </li>
+                    <a href="{{ task.get_absolute_url }}">
+                        <li class="list-group-item bg-lightblue text-center li-hover">
+                            {{ task.title | title}}
+                        </li>
+                    </a>
                 {% empty %}
                     <li class="bg-lightblue list-group-item text-center">No tasks yet.</li>
                 {% endfor %}
