@@ -23,7 +23,7 @@
                     priority: {{ task.get_priority_display }}
                 </li>
                 <li class="bg-lightblue list-group-item text-center">
-                    complete: {{ task.complete }}
+                    complete: {{ task.complete | yesno:'Yes,No' }}
                 </li>
                 <li class="bg-lightblue list-group-item text-center">
                     category: {{ task.category|default:"-" }}
