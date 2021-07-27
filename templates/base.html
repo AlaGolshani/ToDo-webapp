@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+          crossorigin="anonymous">
+
+    {% load static %}
+    <link rel="stylesheet" href={% static 'css/main.css' %}>
+
+    {% block style %}
+    {% endblock %}
+
+    <title>
+        {% block title %}
+        {% endblock %}
+    </title>
+</head>
+<body class="img-content">
+<div class="container-fluid">
+    <header class="d-flex justify-content-center py-3 bg-lightblue">
+        <ul id="myUl" class="nav nav-pills">
+            <li class="nav-item"><a href='/admin' class="nav-link active" aria-current="page">Admin</a></li>
+            <li class="nav-item"><a href={% url 'category-list' %} class="nav-link">Categories</a></li>
+            <li class="nav-item"><a href={% url 'task-list' %} class="nav-link">Tasks</a></li>
+            <li class="nav-item"><a href={% url 'add-task' %} class="nav-link">Add a task</a></li>
+        </ul>
+    </header>
+</div>
+
+<section>
+    {% block main %}
+    {% endblock %}
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+</body>
+</html>

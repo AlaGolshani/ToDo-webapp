@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+    Categories
+{% endblock %}
+
+{% block main %}
+    <h1 class="text-center p-3 m-3">Categories</h1>
+    <div class="container p-5">
+        <div class="m-3">
+            <a href={% url 'add-category' %} class="new p-2 m-5" aria-current="page">+ category</a>
+        </div>
+        <div>
+            <ul class="list-group">
+                <li class="bg-lightblue list-group-item fw-bold text-center">Categories:</li>
+                {% for category in categories.first %}
+                    <a href={% url 'category-tasks' category.pk %}>
+                        <li class="bg-lightblue list-group-item text-center li-hover">
+                            {{ category.name }}
+                        </li>
+                    </a>
+                {% empty %}
+                    <li class="bg-lightblue list-group-item text-center">No categories yet.</li>
+                {% endfor %}
+                <br>
+                <li class="bg-lightblue list-group-item fw-bold text-center">Categories with no tasks:</li>
+                {% for category in categories.last %}
+                    <a href="#">
+                        <li class="bg-lightblue list-group-item text-center">
+                            {{ category.name }}
+                        </li>
+                    </a>
+                {% empty %}
+                    <li class="bg-lightblue list-group-item text-center">No categories yet.</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+{% endblock %}

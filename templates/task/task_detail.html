@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+    task {{ task.title | title }}
+{% endblock %}
+
+{% block main %}
+    <h1 class="text-center p-3 m-3">Task detail</h1>
+    <div class="container p-5">
+        <div>
+            <ul class="list-group">
+                <li class="bg-lightblue list-group-item fw-bold text-center">
+                    {{ task.title | title }}
+                </li>
+                <li class="bg-lightblue list-group-item text-center">
+                    title: {{ task.title | title }}
+                </li>
+                <li class="bg-lightblue list-group-item text-center">
+                    description: {{ task.description|default:"-" }}
+                </li>
+                <li class="bg-lightblue list-group-item text-center">
+                    priority: {{ task.get_priority_display }}
+                </li>
+                <li class="bg-lightblue list-group-item text-center">
+                    complete: {{ task.complete }}
+                </li>
+                <li class="bg-lightblue list-group-item text-center">
+                    category: {{ task.category|default:"-" }}
+                </li>
+                <li class="bg-lightblue list-group-item text-center">
+                    deadline: {{ task.deadline|default:"-" }}
+                </li>
+            </ul>
+        </div>
+    </div>
+{% endblock %}

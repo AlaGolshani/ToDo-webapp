@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+
+{% block style %}
+    {% load static %}
+    <link rel="stylesheet" href={% static 'css/task/add_task_or_category.css' %}>
+{% endblock %}
+
+
+{% block title %}
+    Add task
+{% endblock %}
+
+
+{% block main %}
+    <h1 class="text-center p-3 m-3">Add a task</h1>
+    <main class="container p-5">
+        <div class="row bg-lightblue m-auto w-75 rounded p-3">
+            <form action="#" method="post" class="text-center">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="col-2 btn text-white bg-corn mt-3 add-new">add</button>
+            </form>
+        </div>
+    </main>
+{% endblock %}

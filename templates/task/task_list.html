@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+    Show task
+{% endblock %}
+
+{% block main %}
+    <h1 class="text-center p-3 m-3">Tasks</h1>
+    <div class="container p-5">
+        <div>
+            <ul class="list-group">
+                {% for task in object_list %}
+                    <a href="{{ task.get_absolute_url }}">
+                        <li class="list-group-item bg-lightblue text-center li-hover">
+                            {{ task.title | title}}
+                        </li>
+                    </a>
+                {% empty %}
+                    <li class="bg-lightblue list-group-item text-center">No tasks yet.</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+{% endblock %}
