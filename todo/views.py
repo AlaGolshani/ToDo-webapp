@@ -1,5 +1,7 @@
-from django.db.models import Count
-from django.shortcuts import render, redirect
+import json
+from django.core import serializers
+from django.http import JsonResponse
+from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, ListView, DetailView
 from django.views import View
@@ -9,7 +11,7 @@ from .forms import *
 class TaskList(ListView):
     model = Task
     template_name = 'task/task_list.html'
-    queryset = Task.objects.all().order_by('deadline')
+    queryset = Task.objects.all().order_by('due_date')
 
 
 class TaskCreateView(CreateView):
@@ -48,3 +50,10 @@ class CategoryTasks(View):
 class TaskDetailView(DetailView):
     model = Task
     template_name = 'task/task_detail.html'
+
+
+class JsonTasks(View):
+    def get(self, request):
+        tasks_json = json.loads(serializers.serialize("json", Task.objects.all()))
+        data = {"tasks": tasks_json}
+        return JsonResponse(data, json_dumps_params={'indent': 4})

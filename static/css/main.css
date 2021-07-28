@@ -4,6 +4,11 @@ body > section > h1, .new {
     color: azure;
 }
 
+header > div > a{
+    color: #1b4da8 !important;
+    margin-left: 2rem;
+}
+
 .new:hover{
     background: #4682ee;
     color: azure;

@@ -22,7 +22,7 @@ class Category(models.Model):
 
 class TaskManager(models.Manager):
     def expired_tasks(self):
-        return self.filter(deadline__lt=datetime.now())
+        return self.filter(due_date__lt=datetime.now())
 
 
 class Task(models.Model):
@@ -44,7 +44,7 @@ class Task(models.Model):
                                  on_delete=models.SET_NULL,
                                  blank=True, null=True,
                                  related_name='tasks')
-    deadline = models.DateTimeField(blank=True, null=True)
+    due_date = models.DateTimeField(blank=True, null=True)
     created = models.DateTimeField(auto_now_add=True)
 
     objects = TaskManager()

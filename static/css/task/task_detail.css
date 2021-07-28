@@ -1,0 +1,12 @@
+table, th, td {
+  border: 1px solid rgba(0,0,0,.125);
+  border-collapse: collapse;
+}
+.table{
+    border-radius: 5px !important;
+    opacity: 95%;
+}
+th, td {
+  padding: 5px;
+  text-align: left;
+}

@@ -2,11 +2,11 @@
 
 
 {% block title %}
-    {{ category }} category
+    Reminder | {{ category | title }}
 {% endblock %}
 
 {% block main %}
-    <h1 class="text-center p-3 m-3">Tasks of category {{ category }}</h1>
+    <h1 class="text-center p-3 m-3">Tasks of {{ category }} category</h1>
     <div class="container p-5">
         <div>
             <ul class="list-group">

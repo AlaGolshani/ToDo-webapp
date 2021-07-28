@@ -1,43 +1,52 @@
 {% extends 'base.html' %}
 {% load task_extras %}
 
+{% block style %}
+    {% load static %}
+    <link rel="stylesheet" href={% static 'css/task/task_detail.css' %}>
+{% endblock %}
+
 {% block title %}
-    task {{ task.title | title }}
+    Reminder | {{ task.title | title }}
 {% endblock %}
 
 {% block main %}
     <h1 class="text-center p-3 m-3">Task detail</h1>
     <div class="container p-5">
-        <div>
-            <ul class="list-group">
-                <li class="bg-lightblue list-group-item fw-bold text-center">
-                    {{ task.title | title }}
-                </li>
-                <li class="bg-lightblue list-group-item text-center">
-                    title: {{ task.title | title }}
-                </li>
-                <li class="bg-lightblue list-group-item text-center">
-                    description: {{ task.description|default:"-" }}
-                </li>
-                <li class="bg-lightblue list-group-item text-center">
-                    priority: {{ task.get_priority_display }}
-                </li>
-                <li class="bg-lightblue list-group-item text-center">
-                    complete: {{ task.complete | yesno:'Yes,No' }}
-                </li>
-                <li class="bg-lightblue list-group-item text-center">
-                    category: {{ task.category|default:"-" }}
-                </li>
-                <li class="bg-lightblue list-group-item text-center">
-                    deadline: {{ task.deadline|default:"-" }}
-                </li>
-                {% if task.deadline %}
-                    {% remaining_time task.deadline as remaining_time %}
-                    <li class="bg-lightblue list-group-item text-center">
-                        remaining time: {{ remaining_time }}
-                    </li>
+        <div class="border-3 table-responsive rounded-3">
+            <table class="table align-middle">
+                <tr class="bg-lightblue text-center">
+                    <th>Title:</th>
+                    <td>{{ task.title | title }}</td>
+                </tr>
+                <tr class="bg-lightblue text-center">
+                    <th>Description:</th>
+                    <td>{{ task.description|default:"-" }}</td>
+                </tr>
+                <tr class="bg-lightblue text-center">
+                    <th>Priority:</th>
+                    <td>{{ task.get_priority_display }}</td>
+                </tr>
+                <tr class="bg-lightblue text-center">
+                    <th>Complete:</th>
+                    <td>{{ task.complete | yesno:'Yes,No' }}</td>
+                </tr>
+                <tr class="bg-lightblue text-center">
+                    <th>Category:</th>
+                    <td>{{ task.category|default:"-" }}</td>
+                </tr>
+                <tr class="bg-lightblue text-center">
+                    <th>Due date:</th>
+                    <td>{{ task.due_date|default:"-" }}</td>
+                </tr>
+                {% if task.due_date %}
+                    {% remaining_time task.due_date as remaining_time %}
+                    <tr class="bg-lightblue text-center">
+                        <th>Remaining datetime:</th>
+                        <td>{{ remaining_time }}</td>
+                    </tr>
                 {% endif %}
-            </ul>
+            </table>
         </div>
     </div>
 {% endblock %}
