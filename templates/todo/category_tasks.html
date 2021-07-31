@@ -30,7 +30,7 @@
                     <td>{{ task.title | title }}</td>
                     <td>{{ task.get_priority_display }}</td>
                     <td>{{ task.due_date | default:"-" }}</td>
-                    <td>{{ task.category | default:"-" }}</td>
+                    <td>{{ task.category | default:"-" | title }}</td>
                     {% time_diff task.due_date as time_diff %}
                     <td>{{ time_diff | default:'-' }}</td>
                 {% empty %}
