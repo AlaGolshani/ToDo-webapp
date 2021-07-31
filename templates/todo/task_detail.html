@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load task_extras %}
+{% load task_extras %}
 
 {% block style %}
     {% load static %}
@@ -13,7 +14,7 @@
 {% block main %}
     <h1 class="text-center p-3 m-3">Task detail</h1>
     <div class="container p-5">
-        <div class="border-3 table-responsive rounded-3">
+        <div class="border-3 rounded-3">
             <table class="table align-middle">
                 <tr class="bg-lightblue text-center">
                     <th>Title:</th>
@@ -40,13 +41,17 @@
                     <td>{{ task.due_date|default:"-" }}</td>
                 </tr>
                 {% if task.due_date %}
-                    {% remaining_time task.due_date as remaining_time %}
                     <tr class="bg-lightblue text-center">
-                        <th>Remaining datetime:</th>
-                        <td>{{ remaining_time }}</td>
+                        <th>Time left:</th>
+                        {% time_diff task.due_date as time_diff%}
+                        <td>{{ time_diff | default:'-' }}</td>
                     </tr>
                 {% endif %}
             </table>
+        </div>
+        <div class="mt-3">
+            <a href={% url 'task-edit' task.pk %} class=" my-btn edit" aria-current="page">Edit</a>
+            <a href={% url 'task-delete' task.pk %} class=" my-btn delete" aria-current="page">Delete</a>
         </div>
     </div>
 {% endblock %}

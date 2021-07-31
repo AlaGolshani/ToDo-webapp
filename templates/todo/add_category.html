@@ -3,7 +3,7 @@
 
 {% block style %}
     {% load static %}
-    <link rel="stylesheet" href={% static 'css/task/add_task_or_category.css' %}>
+    <link rel="stylesheet" href={% static 'css/task/add_category.css' %}>
 {% endblock %}
 
 
@@ -15,7 +15,7 @@
 {% block main %}
     <h1 class="text-center p-3 m-3">Add a category</h1>
     <main class="container p-5">
-        <div class="row bg-lightblue m-auto w-50 rounded p-4">
+        <div class="row bg-add m-auto w-50 rounded p-4">
             <form action="#" method="post" class="text-center">
                 {% csrf_token %}
                 {{ form.as_p }}

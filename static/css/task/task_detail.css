@@ -10,3 +10,15 @@ th, td {
   padding: 5px;
   text-align: left;
 }
+
+.edit, .delete{
+    padding: .7rem 1.5rem;
+}
+
+.delete{
+    background: #8f2a2a;
+}
+
+.delete:hover{
+    background: #751b1b;
+}

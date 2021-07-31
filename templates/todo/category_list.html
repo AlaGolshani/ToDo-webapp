@@ -9,12 +9,12 @@
     <h1 class="text-center p-3 m-3">Categories</h1>
     <div class="container p-5">
         <div>
-            <a href={% url 'add-category' %} class="new p-2" aria-current="page">+ new</a>
+            <a href={% url 'add-category' %} class="my-btn p-2" aria-current="page">+ new</a>
         </div>
         <div class="mt-3">
             <ul class="list-group">
-                <li class="bg-lightblue list-group-item fw-bold text-center">Categories:</li>
-                {% for category in categories.first %}
+                <li class="bg-lightblue list-group-item fw-bold text-center">Full Categories:</li>
+                {% for category in categories.full %}
                     <a href={% url 'category-tasks' category.pk %}>
                         <li class="bg-lightblue list-group-item text-center li-hover">
                             {{ category.name | title }}
@@ -24,8 +24,8 @@
                     <li class="bg-lightblue list-group-item text-center">No categories yet.</li>
                 {% endfor %}
                 <br>
-                <li class="bg-lightblue list-group-item fw-bold text-center">Categories with no tasks:</li>
-                {% for category in categories.last %}
+                <li class="bg-lightblue list-group-item fw-bold text-center">Empty Categories:</li>
+                {% for category in categories.empty %}
                     <a href="#">
                         <li class="bg-lightblue list-group-item text-center">
                             {{ category.name }}

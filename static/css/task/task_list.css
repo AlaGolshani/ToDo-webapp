@@ -1,0 +1,16 @@
+.table-row{
+cursor:pointer;
+}
+
+td,th,tr{
+    border: 1px solid #4343ba;
+}
+
+thead{
+    background: cornflowerblue;
+}
+
+thead > th{
+    font-weight: normal !important;
+
+}

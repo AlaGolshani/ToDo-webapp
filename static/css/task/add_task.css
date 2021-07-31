@@ -1,0 +1,11 @@
+.cursor-pointer{
+    cursor: pointer;
+}
+
+.add-new:hover{
+    background-color: #1b6ade !important;
+}
+
+main ul{
+    padding-right: 4rem !important;
+}

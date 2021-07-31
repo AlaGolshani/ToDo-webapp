@@ -1,15 +1,15 @@
-body > section > h1, .new {
+body > section > h1, .my-btn {
     border-radius: 5px;
     background-color: cornflowerblue;
     color: azure;
 }
 
-header > div > a{
+header > div > a {
     color: #1b4da8 !important;
     margin-left: 2rem;
 }
 
-.new:hover{
+.my-btn:hover {
     background: #4682ee;
     color: azure;
 }
@@ -35,6 +35,10 @@ a {
     background-color: #6495ed;
 }
 
-.li-hover:hover{
+.li-hover:hover {
     background: #b0d6f3;
+}
+
+.bg-add {
+    background-color: rgb(203 231 248 / 70%);
 }

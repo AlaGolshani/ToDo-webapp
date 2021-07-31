@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load task_extras %}
+
+{% block style %}
+    {% load static %}
+    <link rel="stylesheet" href={% static 'css/task/task_detail.css' %}>
+{% endblock %}
+
+{% block title %}
+    Reminder | Delete
+{% endblock %}
+
+{% block main %}
+    <h1 class="text-center p-3 m-3">Delete task</h1>
+    <main class="container p-5">
+        <div class="row bg-lightblue m-auto w-50 rounded p-3">
+            <form method="post" class="text-center">
+                {% csrf_token %}
+                <p class="bg-lightblue text-center p-3">
+                    Are you sure you want to delete "{{ object }}"?
+                </p>
+                <input type="submit" value="Confirm" class=" btn bg-corn text-white">
+            </form>
+        </div>
+    </main>
+{% endblock %}

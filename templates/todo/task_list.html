@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load task_extras %}
+
+{% block style %}
+    {% load static %}
+    <link rel="stylesheet" href={% static 'css/task/task_list.css' %}>
+{% endblock %}
+
+{% block title %}
+    Reminder | Tasks
+{% endblock %}
+
+{% block main %}
+    <h1 class="text-center p-3 m-3">Tasks</h1>
+    <div class="container p-5">
+        <div>
+            <a href={% url 'add-task' %} class="my-btn p-2" aria-current="page">+ new</a>
+        </div>
+        <div class="mt-3">
+            <table class="table table-bordered table-condensed bg-lightblue text-center">
+                <thead>
+                <tr class="text-white bg-corn">
+                    <th>Title</th>
+                    <th>Priority</th>
+                    <th>Due Date</th>
+                    <th>Category</th>
+                    <th>Time left</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for task in object_list %}
+                    <tr class="clickable-row li-hover table-row" data-href="{{ task.get_absolute_url }}">
+                        <td>{{ task.title | title }}</td>
+                        <td>{{ task.get_priority_display }}</td>
+                        <td>{{ task.due_date | default:"-" }}</td>
+                        <td>{{ task.category | default:"-" }}</td>
+                        {% time_diff task.due_date as time_diff%}
+                        <td>{{ time_diff | default:'-' }}</td>
+                {% empty %}
+                    <li class="bg-lightblue list-group-item text-center">No tasks yet.</li>
+                {% endfor %}
+                </tbody>
+            </table>
+            <div class="mt-3">
+                <a href={% url 'download-tasks' %} class="my-btn p-2 mt-1" download>Download</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block script %}
+    <script>
+        $(document).ready(function ($) {
+            $(".table-row").click(function () {
+                window.document.location = $(this).data("href");
+            });
+        });
+    </script>
+{% endblock %}
