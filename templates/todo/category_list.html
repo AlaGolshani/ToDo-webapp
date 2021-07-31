@@ -1,5 +1,9 @@
 {% extends 'base.html' %}
 
+{% block style %}
+    {% load static %}
+    <link rel="stylesheet" href={% static 'css/task/category_edit.css' %}>
+{% endblock %}
 
 {% block title %}
     Reminder | Categories
@@ -13,24 +17,54 @@
         </div>
         <div class="mt-3">
             <ul class="list-group">
-                <li class="bg-lightblue list-group-item fw-bold text-center">Full Categories:</li>
+                <li class="bg-corn text-white list-group-item fw-bold text-center">Full Categories:</li>
                 {% for category in categories.full %}
-                    <a href={% url 'category-tasks' category.pk %}>
-                        <li class="bg-lightblue list-group-item text-center li-hover">
-                            {{ category.name | title }}
-                        </li>
-                    </a>
+                    <div class="row">
+                        <div class="col-10 name">
+                            <a href={% url 'category-tasks' category.slug %}>
+                                <li class="bg-lightblue list-group-item text-center li-hover m-0">
+                                    {{ category.name | title }}
+                                </li>
+                            </a>
+                        </div>
+                        <div class="col-1 p-0">
+                            <a href={% url 'category-edit' category.slug %}>
+                                <p class="bg-lightblue list-group-item text-center li-hover m-0">edit</p>
+                            </a>
+                        </div>
+                        <div class="col-1 delete">
+                            <a href={% url 'category-delete' category.slug %}>
+                                <p class="bg-lightblue list-group-item text-center li-hover m-0">delete</p>
+                            </a>
+                        </div>
+                    </div>
                 {% empty %}
                     <li class="bg-lightblue list-group-item text-center">No categories yet.</li>
                 {% endfor %}
+
                 <br>
-                <li class="bg-lightblue list-group-item fw-bold text-center">Empty Categories:</li>
+
+                <li class="bg-corn text-white list-group-item fw-bold text-center">Empty Categories:</li>
                 {% for category in categories.empty %}
-                    <a href="#">
-                        <li class="bg-lightblue list-group-item text-center">
-                            {{ category.name }}
-                        </li>
-                    </a>
+                    <div class="row">
+                        <div class="col-10 name">
+                            <a href="#">
+                                <li class="bg-lightblue list-group-item text-center li-hover m-0">
+                                    {{ category.name | title }}
+                                </li>
+                            </a>
+                        </div>
+                        <div class="col-1 p-0">
+                            <a href={% url 'category-edit' category.slug %}>
+                                <p class="bg-lightblue list-group-item text-center li-hover m-0">edit</p>
+                            </a>
+                        </div>
+                        <div class="col-1 delete">
+                            <a href={% url 'category-delete' category.slug %}>
+                                <p class="bg-lightblue list-group-item text-center li-hover m-0">delete</p>
+                            </a>
+                        </div>
+                    </div>
                 {% empty %}
                     <li class="bg-lightblue list-group-item text-center">No categories yet.</li>
                 {% endfor %}

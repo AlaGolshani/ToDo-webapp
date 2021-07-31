@@ -1,14 +1,26 @@
 from django.urls import reverse
+from django.utils.text import slugify
+
 from .manager import *
+from .utils import get_random_code
 
 
 # Category model
 class Category(models.Model):
     name = models.CharField(max_length=100)
+    slug = models.SlugField(unique=True, blank=True)
     objects = CategoryManager()  # The default manager
 
     def __str__(self):
         return self.name
+
+    def get_absolute_url(self):
+        return reverse('category-list')
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(str(self.name) + '-' + get_random_code())
+        super(Category, self).save(*args, **kwargs)
 
 
 # Task model

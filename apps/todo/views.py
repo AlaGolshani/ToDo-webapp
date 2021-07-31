@@ -39,9 +39,9 @@ class CategoryCreateView(CreateView):
 
 
 class CategoryTasks(View):
-    def get(self, request, pk):
-        tasks = Category.objects.get(pk=pk).tasks.all()
-        category = Category.objects.get(pk=pk).name
+    def get(self, request, slug):
+        tasks = Category.objects.get(slug=slug).tasks.all()
+        category = Category.objects.get(slug=slug).name
         context = {'tasks': tasks, 'category': category}
         return render(request, 'todo/category_tasks.html', context)
 
@@ -67,3 +67,14 @@ class TaskUpdateView(UpdateView):
 class TaskDeleteView(DeleteView):
     model = Task
     success_url = reverse_lazy('task-list')
+
+
+class CategoryUpdateView(UpdateView):
+    model = Category
+    form_class = CategoryChangeForm
+    template_name_suffix = '_edit'
+
+
+class CategoryDeleteView(DeleteView):
+    model = Category
+    success_url = reverse_lazy('category-list')

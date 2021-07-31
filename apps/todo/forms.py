@@ -44,3 +44,15 @@ class CategoryCreationForm(ModelForm):
                                      'placeholder': 'Name ...'}),
         }
         labels = {'name': ''}  # removing the name label
+
+
+# Model form for update a category
+class CategoryChangeForm(ModelForm):
+    class Meta:
+        model = Category
+        fields = ['name']
+        widgets = {
+            'name': TextInput(attrs={'class': 'form-control m-1',
+                                     'placeholder': 'Name ...'}),
+        }
+        labels = {'name': ''}  # removing the name label
